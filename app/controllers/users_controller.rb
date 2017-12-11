@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 
   # GET: /users
   get "/users" do
-    redirect "/recipes"
+    erb :"/users/index.html"
   end
 
   # GET: /users/new
