@@ -47,8 +47,12 @@ class UsersController < ApplicationController
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
-    @user = User.find(params[:id])
-    erb :"/users/edit.html"
+    if logged_in?
+      @user = User.find(params[:id])
+      erb :"/users/edit.html"
+    else
+      redirect "/login"
+    end
   end
 
   # PATCH: /users/5
