@@ -53,10 +53,12 @@ class UsersController < ApplicationController
 
   # PATCH: /users/5
   patch "/users/:id" do
+
     if params[:email] == "" && params[:username] == ""
-      # id = params[:id].to_s
-      # redirect '/users/'+id+'/edit'
-      redirect "/users/:id/edit"
+      id = params[:id].to_s
+      redirect '/users/'+id+'/edit'
+      # redirect "/users/:id/edit"
+      # erb :"/users/edit.html"
     end
 
     if params[:username] != ""
@@ -71,7 +73,8 @@ class UsersController < ApplicationController
       user.save
     end
 
-    redirect "/users/:id"
+    id = params[:id].to_s
+    redirect '/users/'+id+'/edit'
   end
 
   # DELETE: /users/5/delete

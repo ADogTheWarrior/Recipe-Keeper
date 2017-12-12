@@ -3,7 +3,9 @@
 <h3>current username= <%= @user.username%></h3>
 <h3>current email= <%= @user.email%></h3>
 
-<form action= "/users/ <%= @user.id %>" method="patch">
+<form action= "/users/<%=@user.id%>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+
   <input type="text" name="username" placeholder="new username"> <br></br>
   <input type="text" name="email" placeholder="new email"> <br></br>
 
