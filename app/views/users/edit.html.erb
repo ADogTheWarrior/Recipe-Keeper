@@ -1,1 +1,11 @@
 <h1>Edit User</h1>
+
+<h3>current username= <%= @user.username%></h3>
+<h3>current email= <%= @user.email%></h3>
+
+<form action= "/users/ <%= @user.id %>" method="patch">
+  <input type="text" name="username" placeholder="new username"> <br></br>
+  <input type="text" name="email" placeholder="new email"> <br></br>
+
+  <input type="submit" value="submit">
+</form>

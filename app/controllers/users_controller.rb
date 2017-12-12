@@ -53,6 +53,24 @@ class UsersController < ApplicationController
 
   # PATCH: /users/5
   patch "/users/:id" do
+    if params[:email] == "" && params[:username] == ""
+      # id = params[:id].to_s
+      # redirect '/users/'+id+'/edit'
+      redirect "/users/:id/edit"
+    end
+
+    if params[:username] != ""
+      user = User.find(params[:id])
+      user.username = params[:username]
+      user.save
+    end
+
+    if params[:email] != ""
+      user = User.find(params[:id])
+      user.email = params[:email]
+      user.save
+    end
+
     redirect "/users/:id"
   end
 
