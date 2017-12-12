@@ -11,5 +11,8 @@
 <h2> Recipes </h2>
 
 <% @user.recipes.each do |recipe| %>
+  <h3><%= recipe.name %></h3>
+  <h3><%= recipe.description %></h3>
   <h3><%= recipe.content %></h3>
+  <br></br>
 <% end %>
