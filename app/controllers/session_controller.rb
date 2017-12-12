@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   get '/login' do
     if logged_in?
-      redirect "/recipes"
+      redirect "/users/" + current_user.id.to_s
     else
       erb :login
     end
@@ -12,7 +12,7 @@ class SessionController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect "/recipes"
+      redirect "/users/" + current_user.id.to_s
     else
       redirect "/login"
     end

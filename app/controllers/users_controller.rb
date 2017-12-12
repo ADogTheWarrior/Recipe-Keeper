@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   # GET: /users/new
   get "/users/new" do
     if logged_in?
-      redirect "/recipes"
+      redirect "/users/" + current_user.id.to_s
     else
       erb :"/users/new.html"
     end
@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
       if user.save
         session[:user_id] = user.id
-        redirect "/recipes"
+        redirect "/users/" + current_user.id.to_s
       else
         redirect "/users/new"
       end
@@ -41,11 +41,13 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:id" do
+    @user = User.find(params[:id])
     erb :"/users/show.html"
   end
 
   # GET: /users/5/edit
   get "/users/:id/edit" do
+    @user = User.find(params[:id])
     erb :"/users/edit.html"
   end
 

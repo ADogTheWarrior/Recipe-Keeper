@@ -1,5 +1,15 @@
 <h1>Show User</h1>
 
+<form action= "/users/<%= @user.id %>/edit" method="patch">
+  <input type="submit" value="Edit">
+</form><br>
+
+<form action= "/users/<%= @user.id %>/delete" method="delete">
+  <input type="submit" value="Delete">
+</form><br>
+
+<h2> Recipes </h2>
+
 <% @user.recipes.each do |recipe| %>
   <h3><%= recipe.content %></h3>
 <% end %>
