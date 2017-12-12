@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 
       if user.save
         session[:user_id] = user.id
-        redirect "/users/" + current_user.id.to_s
+        redirect "/users/" + user.id.to_s
       else
         redirect "/users/new"
       end
