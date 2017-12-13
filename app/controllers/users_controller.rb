@@ -41,8 +41,12 @@ class UsersController < ApplicationController
 
   # GET: /users/5
   get "/users/:id" do
-    @user = User.find(params[:id])
-    erb :"/users/show.html"
+    if logged_in?
+      @user = User.find(params[:id])
+      erb :"/users/show.html"
+    else
+      redirect "/login"
+    end
   end
 
   # GET: /users/5/edit
@@ -57,6 +61,10 @@ class UsersController < ApplicationController
 
   # PATCH: /users/5
   patch "/users/:id" do
+    if session[:user_id] == User.find(params[:id])
+      id = params[:id].to_s
+      redirect '/users'
+    end
 
     if params[:email] == "" && params[:username] == ""
       id = params[:id].to_s
@@ -81,6 +89,16 @@ class UsersController < ApplicationController
 
   # DELETE: /users/5/delete
   delete "/users/:id/delete" do
-    redirect "/users"
+    if logged_in?
+      if session[:user_id] == User.find(params[:id])
+        User.find(params[:id]).destroy
+      else
+        id = params[:id].to_s
+        redirect '/users/'+id
+      end
+    else
+      id = params[:id].to_s
+      redirect '/users/'+id
+    end
   end
 end
