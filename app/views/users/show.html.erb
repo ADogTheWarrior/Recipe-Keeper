@@ -1,13 +1,15 @@
 <h1><%= @user.username %></h1>
 <h3>Email: <%= @user.email %></h3>
 
-<form action= "/users/<%= @user.id %>/edit" method="patch">
-  <input type="submit" value="Edit User">
-</form><br>
+<% if @user.id == session[:user_id]%>
+  <form action= "/users/<%= @user.id %>/edit" method="patch">
+    <input type="submit" value="Edit User">
+  </form><br>
 
-<form action= "/users/<%= @user.id %>/delete" method="delete">
-  <input type="submit" value="Delete User">
-</form><br>
+  <form action= "/users/<%= @user.id %>/delete" method="delete">
+    <input type="submit" value="Delete User">
+  </form><br>
+<% end %>
 
 <h2> <%= @user.username %>'s Recipes </h2>
 
