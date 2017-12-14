@@ -90,8 +90,10 @@ class UsersController < ApplicationController
   # DELETE: /users/5/delete
   delete "/users/:id/delete" do
     if logged_in?
-      if session[:user_id] == User.find(params[:id])
+      if session[:user_id] == params[:id].to_i
         User.find(params[:id]).destroy
+        session[:user_id] = {}
+        erb :welcome
       else
         id = params[:id].to_s
         redirect '/users/'+id
