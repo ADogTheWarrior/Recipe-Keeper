@@ -21,7 +21,7 @@ class SessionController < ApplicationController
   get "/logout" do
     if logged_in?
       session.clear
-      redirect "/login"
+      erb :welcome
     else
       redirect "/"
     end
