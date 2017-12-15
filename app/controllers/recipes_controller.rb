@@ -2,17 +2,43 @@ class RecipesController < ApplicationController
 
   # GET: /recipes
   get "/recipes" do
-    erb :"/recipes/index.html"
+    if logged_in?
+      erb :"/recipes/index.html"
+    else
+      redirect "/users/new"
+    end
   end
 
   # GET: /recipes/new
   get "/recipes/new" do
-    erb :"/recipes/new.html"
+    if logged_in?
+      erb :"/recipes/new.html"
+    else
+      redirect "/users/new"
+    end
   end
 
   # POST: /recipes
   post "/recipes" do
-    redirect "/recipes"
+binding.pry
+    if params[:name] != "" && params[:description] != "" && params[:content] != ""
+      if Recipe.find_by(name: params[:name] != nil)
+        redirect "/recipes/new"
+      end
+
+      recipe = Recipe.new(name: params[:name], description: params[:description], content: params[:content])
+      user = current_user
+
+      if recipe.save
+        user.recipes << recipe
+        user.save
+        redirect "/users/" + user.id.to_s
+      else
+        redirect "/recipes/new"
+      end
+    else
+      redirect "/recipes/new"
+    end
   end
 
   # GET: /recipes/5
