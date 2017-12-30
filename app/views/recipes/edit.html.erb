@@ -4,9 +4,9 @@
   <input id="hidden" type="hidden" name="_method" value="patch">
 
   <h3>Name</h3>
-  <input type="text" name="name"> <br></br>
+  <input type="text" name="name" value="<%=@recipe.name%>"> <br></br>
   <h3>Description</h3>
-  <textarea name="description" style="width:400px; height:200px;"><%=@recipe.decription%></textarea><br></br>
+  <textarea name="description" style="width:400px; height:200px;"><%=@recipe.description%></textarea><br></br>
   <h3>Directions</h3>
   <textarea name="content" style="width:400px; height:500px;"><%=@recipe.content%></textarea><br></br>
 

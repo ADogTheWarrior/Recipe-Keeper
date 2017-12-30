@@ -18,8 +18,17 @@
   <h3>name: <%= recipe.name %></h3>
   <h3>description: <%= recipe.description %></h3>
   <h3>directions: <%= recipe.content %></h3>
-  <h3>edit</h3>
-  <h3>delete</h3>
+  <h3>
+    <form action= "/recipes/<%=recipe.id%>/edit" method="patch">
+      <input type="submit" value="Edit Recipe">
+    </form>
+  </h3>
+  <h3>
+    <form action= "/recipes/<%=recipe.id%>/delete" method="post">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete Recipe">
+    </form>
+  </h3>
   <br></br>
 <% end %>
 

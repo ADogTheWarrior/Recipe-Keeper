@@ -44,7 +44,12 @@ class RecipesController < ApplicationController
 
   # GET: /recipes/5/edit
   get "/recipes/:id/edit" do
-    erb :"/recipes/edit.html"
+    if logged_in?
+      @recipe = Recipe.find(params[:id])
+      erb :"/recipes/edit.html"
+    else
+      redirect "/login"
+    end
   end
 
   # PATCH: /recipes/5
