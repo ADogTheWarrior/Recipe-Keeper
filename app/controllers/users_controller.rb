@@ -62,7 +62,6 @@ class UsersController < ApplicationController
   # PATCH: /users/5
   patch "/users/:id" do
     if session[:user_id] == User.find(params[:id])
-      id = params[:id].to_s
       redirect '/users'
     end
 
