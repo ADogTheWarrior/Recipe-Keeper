@@ -39,7 +39,12 @@ class RecipesController < ApplicationController
 
   # GET: /recipes/5
   get "/recipes/:id" do
-    erb :"/recipes/show.html"
+    if logged_in?
+      @recipe = Recipe.find(params[:id])
+      erb :"/recipes/show.html"
+    else
+      redirect "/login"
+    end
   end
 
   # GET: /recipes/5/edit
@@ -54,10 +59,9 @@ class RecipesController < ApplicationController
 
   # PATCH: /recipes/5
   patch "/recipes/:id" do
-    # binding.pry
-    # if session[:user_id] == User.find(params[:id])
-    #   redirect '/users'
-    # end
+    if session[:user_id] == User.find(params[:id])
+      redirect '/users'
+    end
 
     if params[:name] == "" || params[:description] == "" || params[:content] == ""
       id = params[:id].to_s
@@ -88,6 +92,17 @@ class RecipesController < ApplicationController
 
   # DELETE: /recipes/5/delete
   delete "/recipes/:id/delete" do
-    redirect "/recipes"
+    if logged_in?
+      if session[:user_id] == current_user.id
+        Recipe.find(params[:id]).destroy
+          redirect "/recipes"
+      else
+        id = params[:id].to_s
+        redirect '/recipes/'+id
+      end
+    else
+      id = params[:id].to_s
+      redirect '/recipes/'+id
+    end
   end
 end
