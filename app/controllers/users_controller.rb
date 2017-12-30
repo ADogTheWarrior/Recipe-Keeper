@@ -84,7 +84,7 @@ class UsersController < ApplicationController
     end
 
     id = params[:id].to_s
-    redirect '/users/'+id+'/edit'
+    redirect '/users/'+id
   end
 
   # DELETE: /users/5/delete
