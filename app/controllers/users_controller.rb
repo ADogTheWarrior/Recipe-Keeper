@@ -65,7 +65,7 @@ class UsersController < ApplicationController
       redirect '/users'
     end
 
-    if params[:email] == "" && params[:username] == ""
+    if params[:email] == "" || params[:username] == ""
       id = params[:id].to_s
       redirect '/users/'+id+'/edit'
     end

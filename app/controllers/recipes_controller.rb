@@ -54,7 +54,36 @@ class RecipesController < ApplicationController
 
   # PATCH: /recipes/5
   patch "/recipes/:id" do
-    redirect "/recipes/:id"
+    # binding.pry
+    # if session[:user_id] == User.find(params[:id])
+    #   redirect '/users'
+    # end
+
+    if params[:name] == "" || params[:description] == "" || params[:content] == ""
+      id = params[:id].to_s
+      redirect '/recipes/'+id+'/edit'
+    end
+
+    if params[:name] != ""
+      recipe = Recipe.find(params[:id])
+      recipe.name = params[:name]
+      recipe.save
+    end
+
+    if params[:description] != ""
+      recipe = Recipe.find(params[:id])
+      recipe.description = params[:description]
+      recipe.save
+    end
+
+    if params[:content] != ""
+      recipe = Recipe.find(params[:id])
+      recipe.content = params[:content]
+      recipe.save
+    end
+
+    id = params[:id].to_s
+    redirect '/users/'+id
   end
 
   # DELETE: /recipes/5/delete
