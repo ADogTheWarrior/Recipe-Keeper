@@ -25,7 +25,12 @@ class RecipesController < ApplicationController
         redirect "/recipes/new"
       end
 
-      recipe = Recipe.new(name: params[:name], description: params[:description], content: params[:content])
+      recipe = Recipe.new
+      recipe.name = params[:name]
+      recipe.description = params[:description]
+      # recipe.content = params[:content]
+      # recipe = Recipe.new(name: params[:name], description: params[:description], content: params[:content])
+      # recipe = Recipe.create(name: params[:name], description: params[:description], content: params[:content])
       user = current_user
 
       user.recipes << recipe
