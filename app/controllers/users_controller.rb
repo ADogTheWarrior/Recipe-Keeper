@@ -22,7 +22,7 @@ class UsersController < ApplicationController
   post "/users" do
     if params[:username] != "" && params[:email] != "" && params[:password] != ""
 
-      if User.find_by(username: params[:username], email: params[:email]) != nil
+      if User.find_by(username: params[:username]) != nil || User.find_by(email: params[:email]) != nil
         redirect "/login"
       end
 
