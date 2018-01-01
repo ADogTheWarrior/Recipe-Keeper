@@ -12,6 +12,8 @@
   </form><br>
 <% end %>
 
+<h3><a href = "/users">User Index</a></h3>
+
 <h2> <%= @user.username %>'s Recipes </h2>
 
 <% @user.recipes.each do |recipe| %>
@@ -33,11 +35,15 @@
         <input type="submit" value="Delete Recipe">
       </form>
     </h3>
+
   <% end %>
 
-  <br></br>
 <% end %>
+
+<br></br>
 
 <% if @user.id == session[:user_id]%>
   <h3><a href = "/recipes/new">Add new recipe</a></h3>
 <% end %>
+
+<h3><a href = "/recipes">Recipe Index</a></h3>
