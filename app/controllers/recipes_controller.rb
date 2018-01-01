@@ -59,8 +59,8 @@ class RecipesController < ApplicationController
 
   # PATCH: /recipes/5
   patch "/recipes/:id" do
-    if session[:user_id] == User.find(params[:id])
-      redirect '/users'
+    if session[:user_id] != Recipe.find(params[:id]).user_id
+      redirect '/users/'
     end
 
     if params[:name] == "" || params[:description] == "" || params[:content] == ""
@@ -86,7 +86,7 @@ class RecipesController < ApplicationController
       recipe.save
     end
 
-    id = params[:id].to_s
+    id = Recipe.find(params[:id]).user_id.to_s
     redirect '/users/'+id
   end
 
