@@ -1,8 +1,8 @@
-<h1>Recipe</h1>
+<h1><%= @recipe.name %></h1>
 
-<h3>Name: <%= @recipe.name %></h3>
 <h3>Description: <%= @recipe.description %></h3>
 <h3>Directions: <%= @recipe.content %></h3>
+<h3>Posted by: <a href = "/users/<%=@recipe.user_id%>"><%= User.find(@recipe.user_id).username %></a></h3>
 
 <% if @recipe.user_id == session[:user_id]%>
   <h3>
