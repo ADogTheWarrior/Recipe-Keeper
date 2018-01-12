@@ -2,11 +2,11 @@
 
 <form action= "/recipes" method="POST">
   <h3>Name</h3>
-  <input type="text" name="name" placeholder="name"> <br></br>
+  <input type="text" name="recipe[name]" placeholder="name"> <br></br>
   <h3>Description</h3>
-  <textarea name="description" placeholder="fill in description here" style="width:400px; height:200px;"></textarea><br></br>
+  <textarea name="recipe[description]" placeholder="fill in description here" style="width:400px; height:200px;"></textarea><br></br>
   <h3>Directions</h3>
-  <textarea name="content" placeholder="fill in directions here" style="width:400px; height:500px;"></textarea><br></br>
+  <textarea name="recipe[content]" placeholder="fill in directions here" style="width:400px; height:500px;"></textarea><br></br>
 
   <input type="submit" value="submit">
 </form>

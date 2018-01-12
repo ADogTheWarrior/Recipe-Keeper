@@ -20,12 +20,13 @@ class RecipesController < ApplicationController
 
   # POST: /recipes
   post "/recipes" do
-    if params[:name] != "" && params[:description] != "" && params[:content] != ""
-      if Recipe.find_by(name: params[:name] != nil)
+    # binding.pry
+    if params[:recipe][:name] != "" && params[:recipe][:description] != "" && params[:recipe][:content] != ""
+      if Recipe.find_by(name: params[:recipe][:name] != nil)
         redirect "/recipes/new"
       end
 
-      recipe = Recipe.new(name: params[:name], description: params[:description], content: params[:content])
+      recipe = Recipe.new(name: params[:recipe][:name], description: params[:recipe][:description], content: params[:recipe][:content])
       user = current_user
 
       user.recipes << recipe
